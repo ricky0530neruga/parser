@@ -1,0 +1,10 @@
+UPDATE customer 
+SET name = '小名'
+WHERE id = 1;
+
+
+insert into customer (CustomerID, Name, Email)
+values (3, '大明', '123@gmail.com');
+
+ DELETE FROM customer WHERE CustomerID = 2;
+
