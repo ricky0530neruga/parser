@@ -1,4 +1,4 @@
-
+"""
 import requests  # 匯入 requests 套件
 from urllib.parse import urljoin  # 匯入用來解析及組合網址的函式
 
@@ -15,8 +15,7 @@ articles = [] # 建立空列表，準備儲存所有頁面的條文
 while url: # 只要 url 為真值，就繼續執行迴圈
 
     r = session.get(url, timeout=10) # 向目前 url 發送 GET 請求，將 Response 物件存入 r
-
- 
+    session.headers["User-Agent"] = "my-python-crawler/1.0"
     r.raise_for_status()    # 檢查 HTTP 回應是否有 4xx、5xx 錯誤
 
     data = r.json()  # 將回傳的 JSON 解析為 Python 資料結構
@@ -40,3 +39,34 @@ while url: # 只要 url 為真值，就繼續執行迴圈
 
 print("全部下載完成")
 print("總條數：", len(articles))
+
+assert len(articles) == data["total"]
+assert len(articles) == 98
+
+for law in data["laws"]:
+    if law["name"] == "職業安全衛生法":
+        pcode = law["pcode"]
+        break
+
+print(pcode)
+"""
+
+
+
+data = {
+    "laws": [
+        {"name": "勞動基準法", "pcode": "N0030001"},
+        {"name": "職業安全衛生法", "pcode": "N0060001"},
+        {"name": "就業服務法", "pcode": "N0090001"}
+    ]
+}
+
+
+
+for law in data["laws"]:
+    if law["name"] == "職業安全衛生法":
+        pcode = law["pcode"]
+        break
+
+print(pcode)
+  
