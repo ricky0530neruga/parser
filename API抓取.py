@@ -52,21 +52,18 @@ print(pcode)
 """
 
 
-
-data = {
-    "laws": [
-        {"name": "勞動基準法", "pcode": "N0030001"},
-        {"name": "職業安全衛生法", "pcode": "N0060001"},
-        {"name": "就業服務法", "pcode": "N0090001"}
-    ]
-}
-
-
-
-for law in data["laws"]:
-    if law["name"] == "職業安全衛生法":
+laws = [
+    {"name": "勞動基準法", "pcode": "N0030001"},
+    {"name": "職業安全衛生法", "pcode": "N0060001"},
+    {"name": "就業服務法", "pcode": "N0090001"}
+]
+pcode = None
+for law in laws:
+    if law["name"] == "勞動基準法":
         pcode = law["pcode"]
+        url = f"https://4-learn.github.io/crawler-playground/v1/api/laws/{law["pcode"]}/page-1.json"
         break
+print(url)
 
-print(pcode)
+
   
